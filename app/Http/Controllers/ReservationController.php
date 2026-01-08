@@ -23,6 +23,7 @@ class ReservationController extends Controller
         $request->validate([
             'venueID'   => 'required',
             'date'      => 'required|date',
+            'reason'    => 'nullable|string|max:255',
             'startTime' => 'required',
             'endTime'   => 'required|after:startTime', // Ensure End is after Start
         ]);
@@ -51,6 +52,7 @@ class ReservationController extends Controller
         $reservation->date = $request->date;
         $reservation->startTime = $request->startTime;
         $reservation->endTime = $request->endTime;
+        $reservation->reason = $request->reason;
         $reservation->status = 'Pending';
         $reservation->venueID = $request->venueID;
         $reservation->id = Auth::user()->id;
@@ -87,6 +89,10 @@ class ReservationController extends Controller
                 'start' => $reservation->date . 'T' . $reservation->startTime,
                 'end'   => $reservation->date . 'T' . $reservation->endTime,
                 'color' => '#dc3545', // Red color for booked slots
+                'extendedProps' => [
+                    'location' => $venues->where('venueID', $reservation->venueID)->first()->location ?? 'Unknown Location',
+                    'kuliyyah' => $venues->where('venueID', $reservation->venueID)->first()->kuliyyah ?? 'Unknown Kuliyyah',
+                ],
             ];
         });
 

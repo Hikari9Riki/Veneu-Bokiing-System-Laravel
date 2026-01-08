@@ -42,6 +42,12 @@ class AuthController extends Controller
     // Show the login form
     public function showLogin() {
         if (Auth::check()) {
+            $user = Auth::user();
+            
+            if ($user->role === 'admin') {
+                return redirect()->route('admin.dashboard');
+            }
+            
             return redirect('/dashboard');
         }
         return view('auth.login');
@@ -55,9 +61,24 @@ class AuthController extends Controller
             'password' => 'required',
         ]);
 
-
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
+
+            // --- NEW LOGIC STARTS HERE ---
+            
+            // 1. Get the currently logged-in user
+            $user = Auth::user();
+
+            // 2. Check their role
+            if ($user->role === 'admin') {
+                // Send Admin to the Admin Dashboard
+                // Make sure your route in web.php is named 'admin.dashboard'
+                return redirect()->intended(route('admin.dashboard'));
+            }
+
+            // --- NEW LOGIC ENDS HERE ---
+
+            // 3. Send normal User to the standard Dashboard
             return redirect()->intended('dashboard');
         }
 
@@ -65,7 +86,6 @@ class AuthController extends Controller
             'email' => 'Invalid email or password.',
         ])->onlyInput('email');
     }
-
     // Handle logout
     public function showLogout(){
         if (Auth::check()) {

@@ -33,19 +33,31 @@
         {{-- Venue --}}
         <div class="mb-4">
             <label class="block text-gray-700 font-medium mb-2">Select Venue</label>
-            <select name="venueID" id="venue" class="w-full border p-2 rounded focus:ring-2 focus:ring-blue-500" required>
+            <select name="venueID" id="venue" class="w-full border p-2 rounded focus:ring-2 focus:ring-blue-500" required >
                 <option value="">-- Choose a Venue --</option>
 
                 @foreach($venues as $venue)
                     <option 
                         value="{{ $venue->venueID }}"
                         data-kuliyyah="{{ $venue->kuliyyah }}"
-                        class="hidden"
+                        data-location="{{ $venue->location }}" class="hidden"
                     >
                         {{ $venue->name }} (Cap: {{ $venue->capacity }})
                     </option>
                 @endforeach
             </select>
+        </div>
+        
+        {{-- location --}}
+        <div class="mb-4">
+            <label class="block text-gray-700 font-medium mb-2">Venue Location</label>
+            <input type="text" id="venueLocation" name="location" class="w-full border p-2 rounded bg-gray-100 cursor-not-allowed" readonly placeholder="Auto-filled after selecting venue">
+        </div>
+
+        {{-- Reason --}}
+        <div class="mb-4">
+            <label class="block text-gray-700 font-medium mb-2">Reason for Booking</label>
+            <input type="text" name="reason" class="w-full border p-2 rounded focus:ring-2 focus:ring-blue-500" required>
         </div>
 
         {{-- Date --}}
@@ -80,20 +92,38 @@
 
 {{-- JS --}}
 <script>
-document.getElementById('kuliyyah').addEventListener('change', function () {
-    const selected = this.value;
-    const venueSelect = document.getElementById('venue');
+    // 1. Existing Kuliyyah Filter Logic (Keep this)
+    document.getElementById('kuliyyah').addEventListener('change', function () {
+        const selected = this.value;
+        const venueSelect = document.getElementById('venue');
 
-    venueSelect.value = '';
+        venueSelect.value = ''; // Reset selection
+        
+        // Clear the location box when Kuliyyah changes
+        document.getElementById('venueLocation').value = ''; 
 
-    [...venueSelect.options].forEach(option => {
-        if (!option.dataset.kuliyyah) return;
-
-        option.classList.toggle(
-            'hidden',
-            option.dataset.kuliyyah !== selected
-        );
+        [...venueSelect.options].forEach(option => {
+            if (!option.dataset.kuliyyah) return;
+            option.classList.toggle('hidden', option.dataset.kuliyyah !== selected);
+        });
     });
-});
+
+    // 2. NEW: Auto-fill Location Logic
+    document.getElementById('venue').addEventListener('change', function() {
+        // Get the selected option element
+        const selectedOption = this.options[this.selectedIndex];
+        
+        // Get the location data we stored in Step 1
+        const location = selectedOption.dataset.location;
+        
+        // Update the input field
+        const locationInput = document.getElementById('venueLocation');
+        
+        if (location) {
+            locationInput.value = location;
+        } else {
+            locationInput.value = '';
+        }
+    });
 </script>
 @endsection

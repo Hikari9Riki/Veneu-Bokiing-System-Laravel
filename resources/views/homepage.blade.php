@@ -166,11 +166,15 @@
                 // Format the dates to look nice
                 let start = eventObj.start ? eventObj.start.toLocaleString() : 'N/A';
                 let end = eventObj.end ? eventObj.end.toLocaleString() : 'N/A';
+                let locate = eventObj.extendedProps.location || 'N/A';
+                let kuliyyah = eventObj.extendedProps.kuliyyah || 'N/A';
 
                 // Create the message string
                 let message = "Reservation Details:\n" +
                             "-------------------\n" +
                             "Venue: " + eventObj.title + "\n" +
+                            "Kuliyyah: " + kuliyyah + "\n" +
+                            "Location: " + locate + "\n" +
                             "Start: " + start + "\n" +
                             "End: " + end;
 

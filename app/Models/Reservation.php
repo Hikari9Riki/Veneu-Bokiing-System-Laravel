@@ -9,7 +9,7 @@ class Reservation extends Model
     protected $primaryKey = 'reservationID';
     public $incrementing = false;
     protected $keyType = 'string';
-    protected $fillable = ['reservationID', 'date', 'startTime', 'endTime', 'status', 'venueID', 'id'];
+    protected $fillable = ['reservationID', 'date', 'startTime', 'endTime', 'status', 'venueID', 'id', 'reason'];
 
     // Relationship: A reservation belongs to one User
     public function user() {

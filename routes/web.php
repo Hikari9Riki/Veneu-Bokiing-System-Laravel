@@ -25,9 +25,18 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 // Only authenticated users can see this
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-    
     // Reservation Routes
     Route::get('/reservations/create', [ReservationController::class, 'create'])->name('reservations.create');
     Route::post('/reservations', [ReservationController::class, 'store'])->name('reservations.store');
+});
 
+use App\Http\Controllers\AdminController;
+
+// Group these under 'auth' and preferably 'admin' middleware
+Route::middleware(['auth'])->prefix('admin')->group(function () {
+    // The Admin Dashboard
+    Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
+    
+    // The Route to handle Approve/Reject
+    Route::patch('/reservations/{id}/status', [AdminController::class, 'updateStatus'])->name('admin.reservations.update');
 });
