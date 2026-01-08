@@ -18,6 +18,7 @@ Execute the automated setup script in PowerShell:
 
 ```powershell
 .\setup.ps1
+```
 
 ##  Linux Setup (terminal)
 
@@ -28,6 +29,7 @@ Execute the automated setup script in terminal:
 
 ```terminal
 bash linux-setup.sh
+```
 
 ##  termux Setup (terminal)
 
@@ -35,4 +37,7 @@ bash linux-setup.sh
 
 **1️⃣ Run Setup Script**
 php artisan serve is not compatible with termux so run these file instead in terminal
+
+```terminal
 sh laravel-run.sh
+```
