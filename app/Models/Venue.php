@@ -13,5 +13,5 @@ class Venue extends Model
     // ADD THIS LINE:
     public $timestamps = false; 
 
-    protected $fillable = ['venueID', 'name', 'location', 'capacity', 'available'];
+    protected $fillable = ['venueID', 'name', 'kuliyyah','location', 'capacity', 'available'];
 }
