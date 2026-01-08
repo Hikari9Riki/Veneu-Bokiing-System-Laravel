@@ -13,7 +13,7 @@ echo "
 # (Get-Content .env) -replace '# DB_USERNAME=.*', 'DB
 # (Get-Content .env) -replace '# DB_PASSWORD=.*', 'DB_PASSWORD='
 "
-echo
+echo ""
 echo "change first before continue..."
 echo "Press any key to continue..."
 echo ""
