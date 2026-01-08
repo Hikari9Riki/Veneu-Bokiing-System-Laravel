@@ -7,6 +7,10 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration {
     public function up(): void
     {
+        Schema::table('users', function (Blueprint $table) {
+            $table->string('phone')->after('email');
+        });
+
         Schema::table('venues', function (Blueprint $table) {
             $table->string('kuliyyah')->after('name');
         });
