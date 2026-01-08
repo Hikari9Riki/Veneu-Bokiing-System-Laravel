@@ -70,9 +70,9 @@ class AuthController extends Controller
     public function showLogout(){
         if (Auth::check()) {
             Auth::logout();
-            return redirect()->intended('showlogin');
+            return redirect()->intended('');
         }
-        return redirect()->intended('showlogin');
+        return redirect()->intended('');
         
     }
     public function logout(Request $request)
@@ -81,6 +81,6 @@ class AuthController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect()->intended('login');
+        return redirect()->intended('');
     }
 }

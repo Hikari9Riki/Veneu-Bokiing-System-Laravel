@@ -7,6 +7,18 @@
     <form action="{{ route('reservations.store') }}" method="POST">
         @csrf
 
+        @if(session('error'))
+            <div class="alert alert-danger">
+                {{ session('error') }}
+            </div>
+        @endif
+
+        @if(session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
+
         {{-- Kuliyyah --}}
         <div class="mb-4">
             <label class="block text-gray-700 font-medium mb-2">Select Kuliyyah</label>

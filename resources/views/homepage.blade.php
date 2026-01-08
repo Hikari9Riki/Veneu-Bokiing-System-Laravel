@@ -125,16 +125,19 @@
     function loadCalendarEvents() {
         let venueId = document.getElementById('venue').value;
         let url = '/reservations';
-
+        console.log("Loading events for Venue ID:", venueId);
         // 🔹 Jika venue dipilih → tambah query
         if (venueId) {
             url += `?venue_id=${venueId}`;
-            document.getElementById('bookingVenue').value = venueId;
         }
 
+        console.log("Fetching URL:", url);
+
         fetch(url)
+            
             .then(response => response.json())
             .then(data => {
+                
                 calendar.removeAllEvents();
 
                 data.forEach(event => {
@@ -142,6 +145,43 @@
                 });
             });
     }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        let calendarEl = document.getElementById('calendar');
+
+        calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: 'dayGridMonth',
+            headerToolbar: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'dayGridMonth,timeGridWeek,timeGridDay'
+            },
+            height: 'auto',
+
+            // SIMPLE ALERT ON CLICK
+            eventClick: function(info) {
+                info.jsEvent.preventDefault(); // Prevent browser navigation
+                let eventObj = info.event;
+
+                // Format the dates to look nice
+                let start = eventObj.start ? eventObj.start.toLocaleString() : 'N/A';
+                let end = eventObj.end ? eventObj.end.toLocaleString() : 'N/A';
+
+                // Create the message string
+                let message = "Reservation Details:\n" +
+                            "-------------------\n" +
+                            "Venue: " + eventObj.title + "\n" +
+                            "Start: " + start + "\n" +
+                            "End: " + end;
+
+                // Show the alert
+                alert(message);
+            }
+        });
+
+        calendar.render();
+        loadCalendarEvents();
+    });
 
 </script>
 @endpush
