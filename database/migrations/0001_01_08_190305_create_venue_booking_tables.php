@@ -8,36 +8,6 @@ return new class extends Migration
 {
     public function up(): void
     {
-        // 2. Create Students Table (Inherits from User)
-        Schema::create('students', function (Blueprint $table) {
-            $table->id()->primary();
-            $table->integer('matricNo')->unique()->nullable();
-            $table->timestamps();
-
-            // Foreign Key linking to Users
-            $table->foreign('id')->references('id')->on('users')->onDelete('cascade');
-        });
-
-        // 3. Create Staff Table (Inherits from User)
-        Schema::create('staff', function (Blueprint $table) {
-            $table->id()->primary();
-            $table->string('staffID', 50)->unique()->nullable();
-            $table->string('role', 50)->nullable();
-            $table->timestamps();
-
-            // Foreign Key linking to Users
-            $table->foreign('id')->references('id')->on('users')->onDelete('cascade');
-        });
-
-        // 4. Create Admin Table (Inherits from User)
-        Schema::create('admins', function (Blueprint $table) {
-            $table->id()->primary();
-            $table->string('adminID', 50)->unique()->nullable();
-            $table->timestamps();
-
-            // Foreign Key linking to Users
-            $table->foreign('id')->references('id')->on('users')->onDelete('cascade');
-        });
 
         // 5. Create Venue Table
         Schema::create('venues', function (Blueprint $table) {
