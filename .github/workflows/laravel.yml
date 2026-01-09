@@ -18,6 +18,16 @@ jobs:
     - uses: actions/checkout@v4
     - name: Copy .env
       run: php -r "file_exists('.env') || copy('.env.example', '.env');"
+    - name: update library
+      run: apt update && upgrade
+    - name: delete php
+      run: apt uninstall php
+    - name: update php
+      run: apt install php
+    - name: delete composer
+      run: apt uninstall composer
+    - name: update composer
+      run: apt install composer
     - name: Install Dependencies
       run: composer install
     - name: Generate key
