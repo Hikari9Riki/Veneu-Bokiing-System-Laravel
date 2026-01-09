@@ -108,7 +108,6 @@
                     return response.json();
                 })
                 .then(data => {
-                    console.log("Venues Found:", data); // Check Console (F12) for this!
 
                     data.forEach(venue => {
                         let option = document.createElement('option');
