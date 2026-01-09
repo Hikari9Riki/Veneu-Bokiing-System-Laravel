@@ -52,7 +52,7 @@ return new class extends Migration
         // 6. Create Reservation Table
         Schema::create('reservations', function (Blueprint $table) {
             // 1. The Reservation's own unique ID
-            $table->id(); 
+            $table->reservationID(); 
             
             $table->date('date');
             $table->time('startTime');
