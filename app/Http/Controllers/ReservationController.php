@@ -55,7 +55,7 @@ class ReservationController extends Controller
         $reservation->reason = $request->reason;
         $reservation->status = 'Pending';
         $reservation->venueID = $request->venueID;
-        $reservation->id = Auth::user()->id;
+        $reservation->user_id = Auth::user()->id;
         $reservation->save();
 
         return redirect('/dashboard')->with('success', 'Reservation submitted!');

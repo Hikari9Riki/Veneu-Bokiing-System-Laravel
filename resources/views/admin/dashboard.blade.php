@@ -119,7 +119,7 @@
                                                 </button>
 
                                                 {{-- Reject Form --}}
-                                                <form action="{{ route('admin.reservations.update', $res->id) }}" method="POST">
+                                                <form action="{{ route('admin.reservations.update', $res->reservationID) }}" method="POST">
                                                     @csrf
                                                     @method('PATCH')
                                                     <input type="hidden" name="status" value="Rejected">
@@ -129,7 +129,7 @@
                                                 </form>
 
                                                 {{-- Approve Form --}}
-                                                <form action="{{ route('admin.reservations.update', $res->id) }}" method="POST">
+                                                <form action="{{ route('admin.reservations.update', $res->reservationID) }}" method="POST">
                                                     @csrf
                                                     @method('PATCH')
                                                     <input type="hidden" name="status" value="Approved">

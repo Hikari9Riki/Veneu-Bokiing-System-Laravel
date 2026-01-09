@@ -4,6 +4,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\VenueController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomepageController::class, 'index'])->name('homepage');
@@ -28,6 +29,7 @@ Route::middleware('auth')->group(function () {
     // Reservation Routes
     Route::get('/reservations/create', [ReservationController::class, 'create'])->name('reservations.create');
     Route::post('/reservations', [ReservationController::class, 'store'])->name('reservations.store');
+    Route::patch('/reservations/{id}/status', [UserController::class, 'updateStatus'])->name('user.reservations.update');
 });
 
 use App\Http\Controllers\AdminController;

@@ -89,81 +89,28 @@ class DatabaseSeeder extends Seeder
         // I have filled in the NULL reasons with generic events as requested.
         DB::table('reservations')->insert([
             [
+                'reservationID' => 'RES-ABC123',
                 'date' => '2026-01-15',
-                'startTime' => '09:00:00',
+                'startTime' => '10:00:00',
                 'endTime' => '12:00:00',
-                'status' => 'Pending',
+                'reason' => 'Weekly Team Meeting',
+                'status' => 'Approved',
                 'venueID' => 'V001',
-                'user_id' => null, // Image showed ID as NULL for this one
-                'reason' => 'Annual General Meeting', // Filled Reason
-                'created_at' => '2026-01-08 07:13:27',
-                'updated_at' => '2026-01-08 07:13:27',
-            ],
-            [
-                'date' => '2026-01-16',
-                'startTime' => '09:00:00',
-                'endTime' => '11:00:00',
-                'status' => 'Approved',
-                'venueID' => 'V002',
                 'user_id' => 1,
-                'reason' => 'Study Group Session', // Filled Reason
-                'created_at' => '2026-01-08 07:14:29',
-                'updated_at' => '2026-01-08 07:14:29',
+                'created_at' => '2026-01-08 12:00:00',
+                'updated_at' => '2026-01-08 12:00:00',
             ],
             [
-                'date' => '2026-01-17',
+                'reservationID' => 'RES-DEF456',
+                'date' => '2026-01-20',
                 'startTime' => '14:00:00',
-                'endTime' => '17:00:00',
-                'status' => 'Approved',
-                'venueID' => 'V003',
-                'user_id' => 1,
-                'reason' => 'Project Discussion', // Filled Reason
-                'created_at' => '2026-01-08 07:14:32',
-                'updated_at' => '2026-01-08 07:14:32',
-            ],
-            [
-                'date' => '2026-01-23',
-                'startTime' => '20:00:00',
-                'endTime' => '12:00:00',
+                'endTime' => '16:00:00',
+                'reason' => 'Project Presentation',
                 'status' => 'Pending',
-                'venueID' => 'V003',
-                'user_id' => 2,
-                'reason' => 'Overnight Event Preparation', // Filled Reason
-                'created_at' => '2026-01-08 07:22:52',
-                'updated_at' => '2026-01-08 07:22:52',
-            ],
-            [
-                'date' => '2026-01-16',
-                'startTime' => '17:02:00',
-                'endTime' => '21:02:00',
-                'status' => 'Pending',
-                'venueID' => 'V003',
-                'user_id' => 2,
-                'reason' => 'Club Weekly Meetup', // Filled Reason
-                'created_at' => '2026-01-08 09:02:52',
-                'updated_at' => '2026-01-08 09:02:52',
-            ],
-            [
-                'date' => '2026-01-29',
-                'startTime' => '18:03:00',
-                'endTime' => '22:03:00',
-                'status' => 'Approved',
-                'venueID' => 'V003',
-                'user_id' => 2,
-                'reason' => 'Video Recording Session', // Filled Reason
-                'created_at' => '2026-01-08 09:03:53',
-                'updated_at' => '2026-01-08 09:03:53',
-            ],
-            [
-                'date' => '2026-01-29',
-                'startTime' => '17:12:00',
-                'endTime' => '21:12:00',
-                'status' => 'Rejected',
                 'venueID' => 'V002',
                 'user_id' => 2,
-                'reason' => 'makan nasi', // Kept original reason
-                'created_at' => '2026-01-08 09:12:23',
-                'updated_at' => '2026-01-08 10:21:29',
+                'created_at' => '2026-01-08 13:00:00',
+                'updated_at' => '2026-01-08 13:00:00',
             ],
         ]);
     }

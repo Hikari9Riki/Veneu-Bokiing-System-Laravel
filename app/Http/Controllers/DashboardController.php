@@ -20,7 +20,7 @@ class DashboardController extends Controller
         // 1. Get reservations for the current user
         // 2. Filter: Date must be Today or Future (>= today)
         // 3. Sort: Latest updates first
-        $reservations = Reservation::where('id', $user->id)
+        $reservations = Reservation::where('user_id', $user->id)
             ->whereDate('date', '>=', Carbon::today()) // Hide past history
             ->with('venue') // Eager load venue to prevent lag
             ->orderBy('updated_at', 'desc') // Latest changes on top
