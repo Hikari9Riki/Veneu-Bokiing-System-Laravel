@@ -19,7 +19,7 @@ jobs:
     - name: Copy .env
       run: php -r "file_exists('.env') || copy('.env.example', '.env');"
     - name: update library
-      run: apt update && upgrade
+      run: apt update && apt upgrade -y
     - name: delete php
       run: apt uninstall php
     - name: update php
